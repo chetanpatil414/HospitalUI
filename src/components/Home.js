@@ -1,5 +1,5 @@
 import React from "react";
-import "/Users/chetanpatil/eclipse-workspace/ReactProject/hospital/src/CSS/Home.css";
+import "/Users/chetanpatil/eclipse-workspace/ReactProject/hospitalUI/src/CSS/Home.css";
 
 class Home extends React.Component {
   state = {
@@ -21,7 +21,7 @@ class Home extends React.Component {
       <div>
         <h2>Doctor's List:</h2>
         <table align="center">
-          <thead>
+          <thead id="headings">
             <tr>
               <th>Id</th>
               <th>Employee Id</th>

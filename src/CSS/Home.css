@@ -1,7 +1,34 @@
-h2 {
-  color: brown;
+h1 {
 }
 
-#headings {
-  color: blue;
+.container {
+}
+
+.header {
+  height: 60px;
+  border: black solid;
+}
+
+.nav {
+  font-size: 15px;
+}
+
+.Add-patient-heading {
+  text-align: center;
+  position: relative;
+  top: -11px;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+fieldset {
+  border: none;
+}
+
+input {
+  outline: none;
 }

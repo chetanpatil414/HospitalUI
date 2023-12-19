@@ -112,13 +112,9 @@ function AddPatient(props) {
           <fieldset>
             <label>Decease</label>
             <div>
-              <input
-                type="text"
-                name="decease"
-                placeholder="Decease"
-                value={formData.decease}
-                onChange={handleInputChange}
-              />
+              <select>
+                <option>Select</option>
+              </select>
             </div>
           </fieldset>
 

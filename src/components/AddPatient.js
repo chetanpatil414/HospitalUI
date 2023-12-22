@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function AddPatient(props) {
+  const [diseaseList, setDisease] = useState([]);
+
   const [formData, setFormData] = useState({
+    //these field typo's must be same through out the whole laylers "UI,Service,DB"
     firstName: "",
     lastName: "",
     email: "",
     phoneNo: "",
     referral: "",
-    decease: "",
-    description: "",
+    disease: "",
+    patientDescription: "",
     drAssigned: "",
   });
 
@@ -28,7 +30,7 @@ function AddPatient(props) {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/hospitalservices/api/addPatientDetail",
+        "http://localhost:8010/hospital/api/addPatient",
         formData
       );
       console.log(response.data);
@@ -36,6 +38,26 @@ function AddPatient(props) {
       console.error("Error submitting the form: ", error);
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const resp = await axios.get(
+        "http://localhost:8080/hospital/api/fetchAllDisease"
+      );
+      console.log(resp.data);
+      // const diseaseList = resp.data.map((item) => item.disease);
+      setDisease(resp.data);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    // Log the updated disease state whenever it changes
+    console.log(
+      "Updated disease state:",
+      diseaseList.map((item) => item.disease)
+    );
+  }, [diseaseList]);
 
   return (
     <div>
@@ -110,10 +132,19 @@ function AddPatient(props) {
           </fieldset>
 
           <fieldset>
-            <label>Decease</label>
+            <label>Disease</label>
             <div>
-              <select>
-                <option>Select</option>
+              <select
+                name="disease"
+                value={formData.disease}
+                onChange={handleInputChange}
+              >
+                <option value="">Select Disease</option>
+                {diseaseList.map((item, index) => (
+                  <option key={index} value={item.disease}>
+                    {item.disease}
+                  </option>
+                ))}
               </select>
             </div>
           </fieldset>
@@ -123,9 +154,9 @@ function AddPatient(props) {
             <div>
               <input
                 type="text"
-                name="description"
+                name="patientDescription"
                 placeholder="description"
-                value={formData.description}
+                value={formData.patientDescription}
                 onChange={handleInputChange}
               />
             </div>

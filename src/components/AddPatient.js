@@ -34,6 +34,17 @@ function AddPatient(props) {
         formData
       );
       console.log(response.data);
+      // Reset form fields after successful submission
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNo: "",
+        referral: "",
+        disease: "",
+        patientDescription: "",
+        drAssigned: "",
+      });
     } catch (error) {
       console.error("Error submitting the form: ", error);
     }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
+import FormField from "./FormField";
 
 function AddPatient(props) {
   const [diseaseList, setDisease] = useState([]);
@@ -77,114 +78,74 @@ function AddPatient(props) {
       </div>
       <div className="form-input">
         <form onSubmit={handleSubmit}>
-          <fieldset>
-            <label>First Name</label>
-            <div>
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                value={formData.firstName}
-                onChange={handleInputChange}
-              />
-            </div>
-          </fieldset>
+          <FormField
+            label="First Name"
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value={formData.firstName}
+            onChange={handleInputChange}
+          />
+          <FormField
+            label="Last Name"
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value={formData.lastName}
+            onChange={handleInputChange}
+          />
+          <FormField
+            label="Email"
+            type="text"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleInputChange}
+          />
+          <FormField
+            label="Phone No"
+            type="text"
+            name="phoneNo"
+            placeholder="Phone No"
+            value={formData.phoneNo}
+            onChange={handleInputChange}
+          />
+          <FormField
+            label="Referral"
+            type="text"
+            name="referral"
+            placeholder="Referral"
+            value={formData.referral}
+            onChange={handleInputChange}
+          />
 
-          <fieldset>
-            <label>Last Name</label>
-            <div>
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                value={formData.lastName}
-                onChange={handleInputChange}
-              />
-            </div>
-          </fieldset>
+          <FormField
+            label="Disease"
+            type="select"
+            name="disease"
+            placeholder="Select Disease"
+            value={formData.disease}
+            data={diseaseList}
+            onChange={handleInputChange}
+          />
 
-          <fieldset>
-            <label>Email</label>
-            <div>
-              <input
-                type="text"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleInputChange}
-              />
-            </div>
-          </fieldset>
+          <FormField
+            label="Description"
+            type="text"
+            name="patientDescription"
+            placeholder="description"
+            value={formData.patientDescription}
+            onChange={handleInputChange}
+          />
 
-          <fieldset>
-            <label>Phone No</label>
-            <div>
-              <input
-                type="text"
-                name="phoneNo"
-                placeholder="Phone No"
-                value={formData.phoneNo}
-                onChange={handleInputChange}
-              />
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <label>Referral</label>
-            <div>
-              <input
-                type="text"
-                name="referral"
-                placeholder="Referral"
-                value={formData.referral}
-                onChange={handleInputChange}
-              />
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <label>Disease</label>
-            <div>
-              <select
-                name="disease"
-                value={formData.disease}
-                onChange={handleInputChange}
-              >
-                <option value="">Select Disease</option>
-                {diseaseList.map((item, index) => (
-                  <option key={index} value={item.disease}>
-                    {item.disease}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <label>Description</label>
-            <div>
-              <input
-                type="text"
-                name="patientDescription"
-                placeholder="description"
-                value={formData.patientDescription}
-                onChange={handleInputChange}
-              />
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <label>Dr Assigned</label>
-            <div>
-              <input
-                type="text"
-                name="drAssigned"
-                placeholder="drAssigned"
-                value={formData.drAssigned}
-                onChange={handleInputChange}
-              />
-            </div>
-          </fieldset>
+          <FormField
+            label="Dr Assigned"
+            type="text"
+            name="drAssigned"
+            placeholder="drAssigned"
+            value={formData.drAssigned}
+            onChange={handleInputChange}
+          />
           <div>
             <button>Submit</button>
           </div>
